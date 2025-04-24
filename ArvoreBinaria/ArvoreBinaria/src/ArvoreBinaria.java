@@ -1,11 +1,14 @@
-public class ArvoreBinaria<T> implements NoArvoreBinaria<T> {
+public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
 
-    public ArvoreBinaria() {
+    private NoArvoreBinaria<T> raiz;
 
+    public ArvoreBinaria(T info) {
+        super(info);
+        raiz = null;
     }
 
     public void setRaiz(NoArvoreBinaria<T> raiz) {
-
+        this.raiz = raiz;
     }
 
     public boolean estaVazia() {
@@ -16,7 +19,7 @@ public class ArvoreBinaria<T> implements NoArvoreBinaria<T> {
         }
     }
 
-    public boolean pertence() {
+    public boolean pertence(T info) {
         return pertence(raiz, info);
     }
 
@@ -24,27 +27,32 @@ public class ArvoreBinaria<T> implements NoArvoreBinaria<T> {
         if (no == null) {
             return false;
         } else {
-            return (no.info == info) || pertence(no.esq, info) || pertence(no.dir, info);
+            return (no.getInfo() == info || pertence(no.getEsquerda(), info) || pertence(no.getDireita(), info)); 
         }
     }
 
     public String toString() {
-        if (raiz == null) {
-            return " ";
-        } else {
-            return obterRepresentacaoTextual(raiz);
+        return arvorePre(raiz);
+    }
+
+    private String arvorePre(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return "<>";
         }
+        String esquerdaStr = arvorePre(no.getEsquerda());
+        String direitaStr = arvorePre(no.getDireita());
+        return "<" + no.getInfo() + esquerdaStr + direitaStr + ">";
     }
-
-    private String arvorePre(NoArvoreBinariaL<T> no) {
-
-    }
-
+ 
     public int contarNos() {
-
+        return contarNos(raiz);
     }
 
     private int contarNos(NoArvoreBinaria<T> no) {
-
+        if (no == null) {
+            return 0;
+        } else {
+            return 1 + contarNos(no.getEsquerda()) + contarNos(no.getDireita());
+        }
     }
 }
