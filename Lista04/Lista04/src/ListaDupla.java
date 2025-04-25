@@ -1,5 +1,5 @@
 public class ListaDupla<T> {
-
+ 
     private NoListaDupla<T> primeiro;
 
     public ListaDupla() {
@@ -99,5 +99,18 @@ public class ListaDupla<T> {
             p = p.getProximo();
         }
         return numeros;
+    }
+
+    public ListaDupla<T> clonar() {
+        ListaDupla<T> clone = new ListaDupla<T>();
+        NoListaDupla<T> p = primeiro;
+        while (p.getProximo() != null) {
+            p.getProximo();
+        }
+        while (p != null) {
+            clone.inserir(p.getInfo());
+            p = p.getAnterior();
+        }   
+        return clone;
     }
 }

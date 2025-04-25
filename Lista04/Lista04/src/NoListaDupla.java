@@ -1,5 +1,5 @@
 public class NoListaDupla<T> {
-    
+     
     private T info;
     private NoListaDupla<T> proximo;
     private NoListaDupla<T> anterior;
