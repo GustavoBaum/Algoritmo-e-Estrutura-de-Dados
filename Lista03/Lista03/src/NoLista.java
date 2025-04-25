@@ -1,5 +1,5 @@
 public class NoLista<T> {
-    
+     
     private T info;
     private NoLista<T> proximo;
     

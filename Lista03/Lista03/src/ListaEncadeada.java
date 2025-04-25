@@ -1,5 +1,5 @@
 public class ListaEncadeada<T> {
-
+ 
     private NoLista<T> primeiro;
 
     public ListaEncadeada() {
@@ -81,5 +81,24 @@ public class ListaEncadeada<T> {
             p = p.getProximo();
         }
         return numeros;
+    }
+
+    public ListaEncadeada<T> criarSubLista(int inicio, int fim) {
+        ListaEncadeada<T> subLista = new ListaEncadeada<T>();
+        NoLista<T> p = primeiro;
+        if (inicio > 0 && inicio <= p.obterComprimento() && fim > 0 && fim <= p.obterComprimento()) {
+            while (p != null) {
+                if (p.getInfo() == inicio) {
+                    while (p != buscar(fim).proximo.getInfo()) {
+                        subLista.inserir(p.setInfo());
+                        p = p.getProximo();
+                    }
+                    p = p.getProximo();
+                }
+            }
+        } else {
+            throw new IndexOutOfBoundsException();
+        }
+        return subLista;
     }
 }
