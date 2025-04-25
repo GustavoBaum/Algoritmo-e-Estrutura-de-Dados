@@ -1,5 +1,5 @@
 public class ListaEncadeada<T> {
- 
+
     private NoLista<T> primeiro;
 
     public ListaEncadeada() {
@@ -25,7 +25,7 @@ public class ListaEncadeada<T> {
         NoLista<T> p = primeiro;
         while (p != null) {
             if (p.getInfo() == info) {
-                return p;   
+                return p;
             }
             p = p.getProximo();
         }
@@ -60,7 +60,7 @@ public class ListaEncadeada<T> {
     public NoLista<T> obterNo(int idx) {
         int indiceNo = 0;
         NoLista<T> p = primeiro;
-        while (p != null) { 
+        while (p != null) {
             if (idx == indiceNo) {
                 return p;
             }
@@ -86,14 +86,18 @@ public class ListaEncadeada<T> {
     public ListaEncadeada<T> criarSubLista(int inicio, int fim) {
         ListaEncadeada<T> subLista = new ListaEncadeada<T>();
         NoLista<T> p = primeiro;
-        if (inicio > 0 && inicio <= p.obterComprimento() && fim > 0 && fim <= p.obterComprimento()) {
+        int posicao = 0;
+
+        if (inicio > 0 && inicio <= obterComprimento() && fim > 0 && fim <= obterComprimento()) {
             while (p != null) {
-                if (p.getInfo() == inicio) {
-                    while (p != buscar(fim).proximo.getInfo()) {
-                        subLista.inserir(p.setInfo());
+                if (p.getInfo().equals(inicio)) {
+                    while (p != null && posicao <= fim) {
+                        if (posicao >= inicio) {
+                            subLista.inserir(p.getInfo());
+                        }
                         p = p.getProximo();
+                        posicao++;
                     }
-                    p = p.getProximo();
                 }
             }
         } else {

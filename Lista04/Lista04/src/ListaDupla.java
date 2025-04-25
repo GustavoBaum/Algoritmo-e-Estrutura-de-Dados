@@ -105,7 +105,7 @@ public class ListaDupla<T> {
         ListaDupla<T> clone = new ListaDupla<T>();
         NoListaDupla<T> p = primeiro;
         while (p.getProximo() != null) {
-            p.getProximo();
+            p = p.getProximo();
         }
         while (p != null) {
             clone.inserir(p.getInfo());
