@@ -2,8 +2,7 @@ public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
 
     private NoArvoreBinaria<T> raiz;
 
-    public ArvoreBinaria(T info) {
-        super(info);
+    public ArvoreBinaria() {
         raiz = null;
     }
 
@@ -31,6 +30,32 @@ public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
         }
     }
 
+    public String subArvoreToString(T info) {
+        NoArvoreBinaria<T> newRaiz = buscar(raiz, info);
+
+        if (newRaiz == null) {
+            return "<>";
+        }
+        
+        return arvorePre(newRaiz);
+    }
+
+    public NoArvoreBinaria<T> buscar(T info) {
+        return buscar(raiz, info);
+    }
+
+    private NoArvoreBinaria<T> buscar(NoArvoreBinaria<T> no, T info) {
+        if (no == null || no.getInfo().equals(info)) {
+            return no;
+        }
+
+        NoArvoreBinaria<T> result = buscar(no.getEsquerda(), info);
+        if (result != null) {
+            return result;
+        }
+        return buscar(no.getDireita(), info);
+    }
+
     public String toString() {
         return arvorePre(raiz);
     }
@@ -55,4 +80,22 @@ public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
             return 1 + contarNos(no.getEsquerda()) + contarNos(no.getDireita());
         }
     }
+
+    public ArvoreBinaria<T> clonar() {
+        ArvoreBinaria<T> clone = new ArvoreBinaria<T>();
+        clone.setRaiz(clonar(this.raiz));
+        return clone;
+    }
+
+    private NoArvoreBinaria<T> clonar(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return null;
+        }
+
+        NoArvoreBinaria<T> cloneNo = new NoArvoreBinaria<T>();
+        cloneNo.setInfo(no.getInfo());
+        cloneNo.setEsquerda(clonar(no.getEsquerda()));
+        cloneNo.setDireita(clonar(no.getDireita()));
+        return cloneNo;
+    } 
 }
