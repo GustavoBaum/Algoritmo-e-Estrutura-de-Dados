@@ -2,7 +2,8 @@ public class Arvore<T> extends NoArvore<T> {
 
     private NoArvore<T> raiz;
 
-    public Arvore() {
+    public Arvore(T info) {
+        super(info);
         setRaiz(raiz);
     }   
 
@@ -26,8 +27,7 @@ public class Arvore<T> extends NoArvore<T> {
         String s = "<";
         s = s + no.getInfo();
 
-        NoArvore p;
-        p = no.getPrimeiro();
+        NoArvore p = no.getPrimeiro();
         while (p != null) {
             s = s + obterRepresentacaoTextual(p);
             p = p.getProximo();
@@ -48,8 +48,7 @@ public class Arvore<T> extends NoArvore<T> {
         if (no.getInfo() == info) {
             return true;
         }
-        NoArvore p;
-        p = no.getPrimeiro();
+        NoArvore p = no.getPrimeiro();
         while (p != null) {
             if (pertence(p, info)) {
                 return true;
@@ -99,7 +98,7 @@ public class Arvore<T> extends NoArvore<T> {
     }
 
     public Arvore<T> clonar() {
-        Arvore<T> clone = new Arvore<T>();
+        Arvore<T> clone = new Arvore<T>(getInfo());
         clone.setRaiz(clonar(this.raiz));
         return clone;
     }
@@ -109,7 +108,7 @@ public class Arvore<T> extends NoArvore<T> {
             return null;
         }
 
-        NoArvore<T> cloneNo = new NoArvore<>();
+        NoArvore<T> cloneNo = new NoArvore<>(no.getInfo());
         cloneNo.setInfo(no.getInfo());
         cloneNo.setPrimeiro(clonar(no.getPrimeiro()));
         cloneNo.setProximo(clonar(no.getProximo()));

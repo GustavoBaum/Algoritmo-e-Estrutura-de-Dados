@@ -4,7 +4,7 @@ public class NoArvore<T> {
     private NoArvore<T> primeiro;
     private NoArvore<T> proximo;
 
-    public NoArvore() {
+    public NoArvore(T info) {
         setInfo(info);
     }
 

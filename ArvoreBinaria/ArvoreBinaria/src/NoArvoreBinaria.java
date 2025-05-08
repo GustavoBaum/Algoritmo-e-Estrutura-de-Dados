@@ -4,7 +4,7 @@ public class NoArvoreBinaria<T> {
     private NoArvoreBinaria<T> esquerda;
     private NoArvoreBinaria<T> direita;
 
-    public NoArvoreBinaria() {
+    public NoArvoreBinaria(T info) {
         setInfo(info);
     }
 
