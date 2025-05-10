@@ -2,13 +2,14 @@ public class PilhaLista<T> implements Pilha<T> {
 
     private ListaEncadeada lista;
 
-    public PilhaLista(int info) {
+    public PilhaLista(T info) {
+        lista = new ListaEncadeada<>();
         lista.inserir(info);
     }
 
     @Override
     public void push(T info) {
-        lista = new ListaEncadeada<T>();
+        lista.inserir(info);
     }
 
     public T peek() {
@@ -36,8 +37,6 @@ public class PilhaLista<T> implements Pilha<T> {
 
     @Override
     public void liberar() {
-        while (lista.getPrimeiro() != null) {
-            lista.retirar(lista, lista);
-        }
+       lista = new ListaEncadeada<>();
     }
 }

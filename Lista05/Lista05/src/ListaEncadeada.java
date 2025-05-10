@@ -1,4 +1,4 @@
-public class ListaEncadeada<T> {
+public class ListaEncadeada<T> extends NoLista<T> {
 
     private NoLista<T> primeiro;
 

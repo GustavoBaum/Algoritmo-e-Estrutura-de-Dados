@@ -45,14 +45,27 @@ public class PilhaVetor<T> implements Pilha<T> {
     }
 
     public String toString() {
-        String valores = "";
+        String valores = "[";
         for (int i = tamanho-1; i >= 0; i--) {
             valores += info[i];
             if (i != 0) {
                 valores += ", ";
             }
         }
+        valores += "]";
         return valores;
+    }
+
+    public String toStringInvertido() {
+        String valoresInvertidos = "[";
+        for (int i = 0; i <= tamanho-1; i++) {
+            valoresInvertidos += info[i];
+            if (i != tamanho-1) {
+                valoresInvertidos += ", ";
+            }
+        }
+        valoresInvertidos += "]";
+        return valoresInvertidos;
     }
 
     public void concatenar(PilhaVetor<T> p) {

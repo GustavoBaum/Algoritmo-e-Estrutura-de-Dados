@@ -70,11 +70,11 @@ public class FilaVetor<T> implements Fila<T> {
         String valores = "";
 
         if (tamanho == limite) {
-            throw new FilaVaziaException();
+            throw new FilaCheiaException();
         }
 
         for (int i = 0; i < tamanho; i++) {
-            int indice = (inicio+1) % limite;
+            int indice = (inicio+i) % limite;
             valores += "[" + info[indice] + "]";
         }
         return valores;

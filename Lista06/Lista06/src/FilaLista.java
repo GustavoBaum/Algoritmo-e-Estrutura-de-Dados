@@ -1,16 +1,9 @@
 public class FilaLista<T> implements Fila<T> {
 
     public ListaEncadeada<T> lista;
-    private Object[] info;
-    private int limite;
-    private int tamanho;
-    private int inicio;
 
-    public FilaLista(int limite) {
-        info = (Object[]) new Object();
-        this.limite = limite;
-        this.tamanho = 0;
-        this.inicio = 0;
+    public FilaLista() {
+        lista = new ListaEncadeada<>();
     }
 
     @Override
@@ -20,7 +13,7 @@ public class FilaLista<T> implements Fila<T> {
 
     @Override
     public boolean estaVazia() {
-        return tamanho == 0;
+        return lista.estaVazia();
     }
 
     @Override
@@ -28,7 +21,7 @@ public class FilaLista<T> implements Fila<T> {
         if (estaVazia()) {
             throw new RuntimeException("Fila vazia");   
         }
-        return (T) info[inicio];
+        return (T) lista.getPrimeiro();
     }
 
     @Override
@@ -40,21 +33,10 @@ public class FilaLista<T> implements Fila<T> {
 
     @Override
     public void liberar() {
-        this.info = new Object[limite];
-        this.limite = limite;
-        this.tamanho = 0;
-        this.inicio = 0;
+        lista = new ListaEncadeada<>();
     }
 
     public String toString() {
-        String valores = "";
-        for (int i = 0; i < tamanho; i++) {
-            valores += info[i];
-            if (i != 0) {
-                valores += ", ";
-            }
-        }
-        return valores;
+        return lista.toString();
     }
-    
 }

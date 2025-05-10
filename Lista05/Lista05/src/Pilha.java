@@ -1,12 +1,12 @@
 public interface Pilha<T> {
 
-    public void push(T info);
+    void push(T info);
 
-    public T pop();
+    T pop();
 
-    public T peek();
+    T peek();
 
-    public boolean estaVazia();
+    boolean estaVazia();
 
-    public void liberar();
+    void liberar();
 }
