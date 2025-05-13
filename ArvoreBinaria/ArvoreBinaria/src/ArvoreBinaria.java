@@ -1,10 +1,9 @@
-public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
+public class ArvoreBinaria<T> {
 
     private NoArvoreBinaria<T> raiz;
 
-    public ArvoreBinaria(T info) {
-        super(info);
-        raiz = null;
+    public ArvoreBinaria() {
+        setRaiz(raiz);
     }
 
     public void setRaiz(NoArvoreBinaria<T> raiz) {
@@ -27,17 +26,19 @@ public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
         if (no == null) {
             return false;
         } else {
-            return (no.getInfo() == info || pertence(no.getEsquerda(), info) || pertence(no.getDireita(), info)); 
+            return (no.getInfo() == info || pertence(no.getEsquerda(), info) || pertence(no.getDireita(), info));
         }
     }
 
+    // ---------------------------------------------------------------------------------------------------------------------
+    // Método subArvoreToString
     public String subArvoreToString(T info) {
         NoArvoreBinaria<T> newRaiz = buscar(raiz, info);
 
         if (newRaiz == null) {
             return "<>";
         }
-        
+
         return arvorePre(newRaiz);
     }
 
@@ -57,19 +58,53 @@ public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
         return buscar(no.getDireita(), info);
     }
 
-        public String toString() {
-            return arvorePre(raiz);
-        }
+    // ---------------------------------------------------------------------------------------------------------------------
 
-        private String arvorePre(NoArvoreBinaria<T> no) {
-            if (no == null) {
-                return "<>";
-            }
-            String esquerdaStr = arvorePre(no.getEsquerda());
-            String direitaStr = arvorePre(no.getDireita());
-            return "<" + no.getInfo() + esquerdaStr + direitaStr + ">";
+    public String toString() {
+        return arvorePre(raiz);
+    }
+
+    private String arvorePre(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return "<>";
         }
- 
+        String esquerdaStr = arvorePre(no.getEsquerda());
+        String direitaStr = arvorePre(no.getDireita());
+        return "<" + no.getInfo() + esquerdaStr + direitaStr + ">";
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------------
+    // Método posOrdem
+    public String posOrdem() {
+        return porOrdem(raiz);
+    }
+
+    private String porOrdem(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return "<>";
+        }
+        String esquerdaStr = porOrdem(no.getEsquerda());
+        String direitaStr = porOrdem(no.getDireita());
+        return "<" + esquerdaStr + direitaStr + no.getInfo() + ">";
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------------
+    // Método ordemSimétrica
+    public String ordemSimetrica() {
+        return ordemSimetrica(raiz);
+    }
+
+    private String ordemSimetrica(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return "<>";
+        }
+        String esquerdaStr = ordemSimetrica(no.getEsquerda());
+        String direitaStr = ordemSimetrica(no.getDireita());
+        return "<" + esquerdaStr + no.getInfo() + direitaStr + ">";
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------------
+
     public int contarNos() {
         return contarNos(raiz);
     }
@@ -83,7 +118,7 @@ public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
     }
 
     public ArvoreBinaria<T> clonar() {
-        ArvoreBinaria<T> clone = new ArvoreBinaria<T>(getInfo());
+        ArvoreBinaria<T> clone = new ArvoreBinaria<T>();
         clone.setRaiz(clonar(this.raiz));
         return clone;
     }
@@ -93,10 +128,10 @@ public class ArvoreBinaria<T> extends NoArvoreBinaria<T> {
             return null;
         }
 
-        NoArvoreBinaria<T> cloneNo = new NoArvoreBinaria<T>(no.getInfo());
+        NoArvoreBinaria<T> cloneNo = new NoArvoreBinaria<T>(null);
         cloneNo.setInfo(no.getInfo());
         cloneNo.setEsquerda(clonar(no.getEsquerda()));
         cloneNo.setDireita(clonar(no.getDireita()));
         return cloneNo;
-    } 
+    }
 }

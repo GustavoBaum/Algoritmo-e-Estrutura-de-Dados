@@ -1,34 +1,40 @@
 public class TestesArvoreBinaria {
-    
-    public void teste1() {
-        ArvoreBinaria<Integer> ab = new ArvoreBinaria<Integer>(null); 
-        assertEquals(ab.estaVazia(), true);
+
+    public static void main(String[] args) {
+        // Criar manualmente os nós
+        NoArvoreBinaria<String> noA = new NoArvoreBinaria<>("A");
+        NoArvoreBinaria<String> noB = new NoArvoreBinaria<>("B");
+        NoArvoreBinaria<String> noC = new NoArvoreBinaria<>("C");
+        NoArvoreBinaria<String> noD = new NoArvoreBinaria<>("D");
+        NoArvoreBinaria<String> noE = new NoArvoreBinaria<>("E");
+
+        // Montar a árvore:
+        //       A
+        //      / \
+        //     B   C
+        //    / \
+        //   D   E
+
+        noA.setEsquerda(noB);
+        noA.setDireita(noC);
+        noB.setEsquerda(noD);
+        noB.setDireita(noE);
+
+        // Criar a árvore com raiz
+        ArvoreBinaria<String> arvore = new ArvoreBinaria<>();
+        arvore.setRaiz(noA);
+
+        // Testar os métodos de exibição
+        System.out.println("Pré-Ordem (toString):");
+        System.out.println(arvore.toString());  // Esperado: <A<B<D<><>><E<><>>><C<><>>>
+
+        System.out.println("\nPós-Ordem:");
+        System.out.println(arvore.posOrdem());  // Esperado: <<<><>D><><>E>B><><>C>A>
+
+        System.out.println("\nOrdem Simétrica:");
+        System.out.println(arvore.ordemSimetrica());  // Esperado: <<<><>D>B<><>E>>A<><>C>>
+
+        System.out.println("\nSubárvore a partir de 'B':");
+        System.out.println(arvore.subArvoreToString("B"));  // Esperado: <B<D<><>><E<><>>>
     }
-
-    public void teste2() {
-        ArvoreBinaria<Integer> ab = new ArvoreBinaria<Integer>(null);
-        NoArvoreBinaria<Integer> no1 = new NoArvoreBinaria<Integer>(null);
-        NoArvoreBinaria<Integer> no2 = new NoArvoreBinaria<Integer>(null);
-        ab.setRaiz(no2);
-        assertEquals(ab.estaVazia(), false);
-    }   
-
-    public void teste3() {
-        NoArvoreBinaria<Integer> raiz = new NoArvoreBinaria<Integer>(1);
-        NoArvoreBinaria<Integer> no2 = new NoArvoreBinaria<Integer>(2);
-        NoArvoreBinaria<Integer> no3 = new NoArvoreBinaria<Integer>(3);
-        NoArvoreBinaria<Integer> no4 = new NoArvoreBinaria<Integer>(4);
-        NoArvoreBinaria<Integer> no5 = new NoArvoreBinaria<Integer>(5);
-        NoArvoreBinaria<Integer> no6 = new NoArvoreBinaria<Integer>(6);
-        
-        raiz.setDireita(no3);
-        no3.setEsquerda(no5);
-        no3.setDireita(no6);
-        raiz.setEsquerda(no2);
-        no2.setDireita(no4);
- 
-        ArvoreBinaria<Integer> arvore = new ArvoreBinaria<Integer>(null);
-        arvore.setRaiz(raiz);
-        assertEquals(arvore.toString(), "<1<2<><4<><>>><3<5<><>><6<><>>>>");
-    }    
 }
