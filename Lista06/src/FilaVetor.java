@@ -74,7 +74,7 @@ public class FilaVetor<T> implements Fila<T> {
         }
 
         for (int i = 0; i < tamanho; i++) {
-            int indice = (inicio+1) % limite;
+            int indice = (inicio+i) % limite;
             valores += "[" + info[indice] + "]";
         }
         return valores;
@@ -82,5 +82,18 @@ public class FilaVetor<T> implements Fila<T> {
 
     public int getLimite() {
         return limite;
+    }
+
+    public FilaVetor<T> subListaVetor(int inicio, int fim) {
+        if (inicio < 0 || fim > tamanho || inicio > fim) {
+            throw new IndexOutOfBoundsException("Parâmetros apresentam erro");
+        }
+        FilaVetor<T> subFilaVetor = new FilaVetor<>(fim-inicio);
+
+        for (int i = 0; i > fim; i++) {
+            int controlador = (inicio+i) % limite;
+            subFilaVetor.inserir((T) info[controlador]);
+        }   
+        return subFilaVetor;
     }
 }

@@ -87,15 +87,16 @@ public class ListaEncadeada<T> {
 
     public void inserirFinalFila(int valor) {
         NoLista novo = new NoLista();
-        novo.info = valor;
-        novo.proximo = null;
+        novo.setInfo(valor);
+        novo.setProximo(null);
         
         if (estaVazia()) {
             primeiro = novo;
+            ultimo = novo;
         } else {
-            ultimo.proximo = novo;
+            ultimo.setProximo(novo);
+            ultimo = novo;
         }
-        ultimo = novo;
     }
 
     public void setUltimo() {

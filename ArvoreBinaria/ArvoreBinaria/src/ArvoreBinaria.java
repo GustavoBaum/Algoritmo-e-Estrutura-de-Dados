@@ -134,4 +134,75 @@ public class ArvoreBinaria<T> {
         cloneNo.setDireita(clonar(no.getDireita()));
         return cloneNo;
     }
+
+    // ---------------------------------------------------------------------------------------------------------------------
+    // Método retirar nó
+    public boolean retirarNo(T info) {
+        if (raiz == null) {
+            return false;
+        }
+        if (raiz.getInfo().equals(info)) {
+            raiz = null;
+            return true;
+        }
+
+        return retirarNo(raiz, info);
+    }
+
+    private boolean retirarNo(NoArvoreBinaria<T> no, T info) {
+        if (no == null) {
+            return false;
+        }
+
+        if (no.getEsquerda() != null && no.getEsquerda().getInfo().equals(info)) {
+            no.setEsquerda(null);
+            return true;
+        }
+        if (no.getDireita() != null && no.getDireita().getInfo().equals(info)) {
+            no.setDireita(null);
+            return true;
+        }
+        return retirarNo(no.getEsquerda(), info) || retirarNo(no.getDireita(), info);
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------------
+    // Método para calcular o nível da árvore
+
+    public int contarNivel(T info) {
+        return contarNivel(raiz, info, 0);
+    }
+
+    private int contarNivel(NoArvoreBinaria<T> no, T info, int nivel) {
+        if (no == null) {
+            return -1;
+        }
+        if (no.getInfo().equals(info)) {
+            return nivel;
+        }
+
+        int nivelEsq = contarNivel(no.getEsquerda(), info, nivel+1);
+        if (nivelEsq != -1) {
+            return nivelEsq;
+        }
+        int nivelDir = contarNivel(no.getDireita(), info, nivel+1);
+        return nivelDir;
+    }
+
+    // ---------------------------------------------------------------------------------------------------------------------
+    // Método para calcular a altura da árvore
+
+    public int getAltura() {
+        return getAltura(raiz);
+    }
+
+    private int getAltura(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return -1;
+        }
+
+        int alturaEsq = getAltura(no.getEsquerda());
+        int alturaDir = getAltura(no.getDireita());
+
+        return Math.max(alturaEsq, alturaDir) + 1;
+    }
 }

@@ -65,4 +65,15 @@ public class PilhaVetor<T> implements Pilha<T> {
             this.push(pAux.pop());
         }
     }
+
+    public PilhaVetor<T> subPilhaVetor(int inicio, int fim) {
+        if (inicio < 0 || fim >= tamanho || inicio > fim) {
+            throw new IndexOutOfBoundsException("Parâmetros informados apresentam erros");
+        }
+        PilhaVetor<T> subPilha = new PilhaVetor<>((fim-inicio)+1);
+        for (int i = 0; i <= fim; i++) {
+            subPilha.push((T) info[i]);
+        }
+        return subPilha;
+    }
 }
