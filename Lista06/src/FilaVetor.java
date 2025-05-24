@@ -17,7 +17,7 @@ public class FilaVetor<T> implements Fila<T> {
         if (tamanho == limite) {
             throw new FilaCheiaException();
         }
-        int posicaoInserir = (inicio + tamanho)  % limite;
+        int posicaoInserir = (inicio + tamanho) % limite;
         info[posicaoInserir] = valor;
         tamanho++;
     }
@@ -38,12 +38,12 @@ public class FilaVetor<T> implements Fila<T> {
 
     @Override
     public T retirar() {
-        T valor = peek();   
+        T valor = peek();
         inicio = (inicio + 1) % limite;
         tamanho--;
         return valor;
     }
-    
+
     @Override
     public void liberar() {
         this.info = new Object[limite];
@@ -56,12 +56,12 @@ public class FilaVetor<T> implements Fila<T> {
         FilaVetor<T> f3 = new FilaVetor<T>(this.limite + f2.getLimite());
 
         for (int i = 0; i < this.tamanho; i++) {
-            int elementos = (inicio+i) % info.length;
-            f3.inserir((T)this.info[elementos]);
+            int elementos = (inicio + i) % info.length;
+            f3.inserir((T) this.info[elementos]);
         }
         for (int a = 0; a < f2.tamanho; a++) {
-            int elementos = (f2.inicio+a) % f2.info.length;
-            f3.inserir((T)f2.info[elementos]);
+            int elementos = (f2.inicio + a) % f2.info.length;
+            f3.inserir((T) f2.info[elementos]);
         }
         return f3;
     }
@@ -74,7 +74,7 @@ public class FilaVetor<T> implements Fila<T> {
         }
 
         for (int i = 0; i < tamanho; i++) {
-            int indice = (inicio+i) % limite;
+            int indice = (inicio + i) % limite;
             valores += "[" + info[indice] + "]";
         }
         return valores;
@@ -88,12 +88,26 @@ public class FilaVetor<T> implements Fila<T> {
         if (inicio < 0 || fim > tamanho || inicio > fim) {
             throw new IndexOutOfBoundsException("Parâmetros apresentam erro");
         }
-        FilaVetor<T> subFilaVetor = new FilaVetor<>(fim-inicio);
+        FilaVetor<T> subFilaVetor = new FilaVetor<>(fim - inicio);
 
         for (int i = 0; i > fim; i++) {
-            int controlador = (inicio+i) % limite;
+            int controlador = (inicio + i) % limite;
             subFilaVetor.inserir((T) info[controlador]);
-        }   
+        }
         return subFilaVetor;
+    }
+
+    // -------------------------------------------------------------------------------------------
+    // Método para encolher uma filavetor com espaços vazios para uma nova fila sem eles, apenas com os espaços que contêm info
+    public void encolher() {
+        int quantidade = this.tamanho;
+        Object[] novoInfo = new Object[quantidade];
+
+        for (int i = 0; i < quantidade; i++) {
+            novoInfo[i] = this.info[i];
+        }
+        this.info = novoInfo;
+        this.inicio = 0;
+        this.limite = novoInfo.length;
     }
 }
