@@ -33,13 +33,13 @@ public class ArvoreBinaria<T> {
     // ---------------------------------------------------------------------------------------------------------------------
     // Método subArvoreToString
     public String subArvoreToString(T info) {
-        NoArvoreBinaria<T> newRaiz = buscar(raiz, info);
+        NoArvoreBinaria<T> newraiz = buscar(raiz, info);
 
-        if (newRaiz == null) {
+        if (newraiz == null) {
             return "<>";
         }
 
-        return arvorePre(newRaiz);
+        return arvorePre(newraiz);
     }
 
     public NoArvoreBinaria<T> buscar(T info) {
@@ -180,11 +180,11 @@ public class ArvoreBinaria<T> {
             return nivel;
         }
 
-        int nivelEsq = contarNivel(no.getEsquerda(), info, nivel+1);
+        int nivelEsq = contarNivel(no.getEsquerda(), info, nivel + 1);
         if (nivelEsq != -1) {
             return nivelEsq;
         }
-        int nivelDir = contarNivel(no.getDireita(), info, nivel+1);
+        int nivelDir = contarNivel(no.getDireita(), info, nivel + 1);
         return nivelDir;
     }
 
@@ -204,5 +204,27 @@ public class ArvoreBinaria<T> {
         int alturaDir = getAltura(no.getDireita());
 
         return Math.max(alturaEsq, alturaDir) + 1;
+    }
+
+    public int contarFolhas() {
+        if (raiz == null) {
+            return -1;
+        }
+        return contarFolhas(raiz);
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // Método que visa contar a quantidade de nós filhos de uma árvore binária
+
+    private int contarFolhas(NoArvoreBinaria<T> no) {
+        if (no == null) {
+            return 0;
+        }
+
+        if (no.getEsquerda() == null && no.getDireita() == null) {
+            return +1;
+        }
+
+        return contarFolhas(no.getEsquerda()) + contarFolhas(no.getDireita());
     }
 }
