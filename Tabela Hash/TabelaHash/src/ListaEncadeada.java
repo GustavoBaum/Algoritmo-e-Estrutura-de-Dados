@@ -35,7 +35,7 @@ public class ListaEncadeada<T> {
     public void retirar(T info) {
         NoLista<T> anterior = null;
         NoLista<T> p = primeiro;
-        while (p != null && p.getInfo().equals(info)) {
+        while (p != null && !p.getInfo().equals(info)) {
             anterior = p;
             p = p.getProximo();
         }

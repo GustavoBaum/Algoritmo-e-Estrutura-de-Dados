@@ -23,12 +23,11 @@ public class noMapa<T> {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+        /*NoMapa<?> noMapa = new NoMapa<?> o;
+         * return chave == noMapa.chave;*/
         noMapa other = (noMapa) obj;
         if (chave != other.chave) {
             return false;
