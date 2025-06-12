@@ -34,10 +34,10 @@ public class OrdenacaoMergeSort<T extends Comparable<T>> extends OrdenacaoAbstra
         for (int i = inicio; i < fim; i++) {
             if ((cEsq < tamEsquerda) && (cDir < tamDireita)) {
                 if (esquerda[cEsq] < direita[cDir]) {
-                    info[i] = esquerda[cEsq];
+                    ((Comparable<Integer>) info[i]).compareTo(esquerda[cEsq]);  //info[i] = esquerda[cEsq];
                     cEsq = cEsq + 1;
                 } else {
-                    info[i] = direita[cDir];
+                ((Comparable<Integer>) info[i]).compareTo(direita[cDir]);  //info[i] = direita[cDir];
                     cDir = cDir + 1;
                 }
             } else {
@@ -45,12 +45,12 @@ public class OrdenacaoMergeSort<T extends Comparable<T>> extends OrdenacaoAbstra
             }
 
             while (cEsq < tamEsquerda) {
-                info[i] = esquerda[cEsq];
+                ((Comparable<Integer>) info[i]).compareTo(esquerda[cEsq]);  //info[i] = esquerda[cEsq];
                 cEsq = cEsq +1;
                 i = i + 1;
             }
             while (cDir < tamDireita) {
-                info[i] = direita[cDir];
+                ((Comparable<Integer>) info[i]).compareTo(direita[cDir]);  //info[i] = direita[cDir];
                 cDir = cDir + 1;
                 i = i + 1;
             }

@@ -1,4 +1,4 @@
-public class OrdenacaoBolhaOtimizada<T> extends OrdenacaoAbstract<T>{
+public class OrdenacaoBolhaOtimizada<T extends Comparable<T>> extends OrdenacaoAbstract<T>{
 
     @Override
     public void ordenar(T[] info) {

@@ -8,13 +8,13 @@ public class OrdenacaoQuickSort<T extends Comparable<T>> extends OrdenacaoAbstra
 
     private void quickSort(int inicio, int fim) {
         if (inicio < fim) {
-            int idxPivo = participar(inicio, fim);
+            int idxPivo = particionar(inicio, fim);
             quickSort(inicio, idxPivo-1);
             quickSort(idxPivo+1, fim);
         }
     }   
 
-    private int participar(int inicio, int fim) {
+    private int particionar(int inicio, int fim) {
         int a = inicio; 
         int b = fim+1;
         T pivo = info[inicio];
