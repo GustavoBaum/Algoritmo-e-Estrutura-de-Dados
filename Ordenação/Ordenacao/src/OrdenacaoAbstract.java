@@ -1,6 +1,6 @@
 public abstract class OrdenacaoAbstract<T> {
 
-    private T info[];
+    protected T info[];
 
     public T[] getInfo() {
         return info;
@@ -16,5 +16,5 @@ public abstract class OrdenacaoAbstract<T> {
         info[b] = temp;
     }
 
-    abstract void ordenar();
+    abstract void ordenar(T info[]);
 }

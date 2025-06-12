@@ -1,11 +1,8 @@
-public class OrdenacaoQuickSort<T> {
-    
-    public void ordenar() {
-        
-    }
+public class OrdenacaoQuickSort<T extends Comparable<T>> extends OrdenacaoAbstract<T> {
 
-    public void quickSort() {
-        int n = info.length-1;
+    @Override
+    public void ordenar(T[] info) {
+        int n = (info.length)-1;
         quickSort(0, n);
     }
 
@@ -15,28 +12,29 @@ public class OrdenacaoQuickSort<T> {
             quickSort(inicio, idxPivo-1);
             quickSort(idxPivo+1, fim);
         }
-    }
+    }   
 
     private int participar(int inicio, int fim) {
-        int a = inicio;
+        int a = inicio; 
         int b = fim+1;
-        int pivo = info[inicio];
+        T pivo = info[inicio];
 
-        while (true) {
+        while (true) {  
             do {
-                a = a + 1;
-            } while (a <= fim && info[a] < pivo);
-
+                a = a+1;
+            } while (a <= fim && info[a].compareTo(pivo) < 0); // info[a] < pivo
+            
             do {
-                b = b - 1;
-            } while (b >= inicio && info[b] > pivo);
+                b = b+1;
+            } while (b >= inicio && info[b].compareTo(pivo) > 0); // info[b] > pivo
 
             if (a >= b) {
                 break;
             }
-            trocar(a, b);
+
+            trocar(info, a, b);
         }
-        trocar(b, inicio);
+        trocar(info, b, inicio);
         return b;
-    }   
-}   
+    }
+}

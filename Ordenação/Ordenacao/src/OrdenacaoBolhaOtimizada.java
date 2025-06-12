@@ -1,20 +1,21 @@
-public class OrdenacaoBolhaOtimizada<T> {
+public class OrdenacaoBolhaOtimizada<T> extends OrdenacaoAbstract<T>{
 
-    public void ordenacaoPorBolhaOtimizada(int[] info) {
+    @Override
+    public void ordenar(T[] info) {
         int i, j;
         int n = info.length;
-        boolean trocou = false;
-
-        for (i = n-1; i < 1; i++) {
+        boolean trocou;
+        for (i = 0; i < n-1; i++) {
             trocou = false;
-        } for (j = 0; i < i-1; j++) {
-            if (info[i]> info[j+1]) {
-                trocar(info,j,j+1);
-                trocou = true;
+            for (j = 0; j < i-1; j++) {
+                if (((Comparable<T>) info[i]).compareTo(info[j+1]) > 0) {
+                    trocar(info, j, j+1);
+                    trocou = true;
+                }
             }
-        }
-        if (!trocou) {
-            return;
+            if (!trocou) {
+                return;
+            }
         }
     }
 }

@@ -1,12 +1,13 @@
-public class OrdenacaoBolha<T> {
-    
-    public void ordenarPorBolha(int[] info) {
+public class OrdenacaoBolha<T> extends OrdenacaoAbstract<T> {
+
+    @Override
+    public void ordenar(T[] info) {
         int i, j;
         int n = info.length;
-        for (i = n-1; i < 1; i++) {
+        for(i = 0; i < n-1; i++) {
             for (j = 0; j < i-1; j++) {
-                if (info[j] > info[j+1]) { 
-                    trocar(info,j,j+1);
+                if (((Comparable<T>) info[i]).compareTo(info[j+1]) > 0) {
+                    trocar(info, j, j+1);
                 }
             }
         }
