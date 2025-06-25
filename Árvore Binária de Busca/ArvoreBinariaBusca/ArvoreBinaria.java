@@ -13,6 +13,7 @@ public class ArvoreBinaria<T extends Comparable<T>> extends ArvoreBinariaAbtract
         return p;
     }       
 
+    @SuppressWarnings("unused")
     private NoArvoreBinaria<T> buscar(NoArvoreBinaria<T> no, T info) {
         if (no == null) {
             return null;

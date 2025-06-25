@@ -7,7 +7,7 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
             if (((Comparable<T>) info).compareTo(p.getInfo()) < 0) { // info < p.getInfo()
                 p = p.getEsquerda();
             } else {
-                p = p.getDireita(); 
+                p = p.getDireita();
             }
         }
         return p;
@@ -66,7 +66,7 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
         boolean filhoEsquerda = false;
 
         // Localizar o nó a ser removido:
-        while (p != null && ((Comparable<T>) p.getInfo()).compareTo(info) > 0) {
+        while (p != null && ((Comparable<T>) p.getInfo()).compareTo(info) != 0) {
             pai = p;
             if (((Comparable<T>) info).compareTo(p.getInfo()) < 0) {
                 filhoEsquerda = true;
@@ -83,46 +83,46 @@ public class ArvoreBinariaBusca<T extends Comparable<T>> extends ArvoreBinariaAb
                 if (p == raiz) {
                     raiz = null;
                 } else {
-                    if (filhoEsquerda == true) {
+                    if (filhoEsquerda) {
                         pai.setEsquerda(null);
                     } else {
                         pai.setDireita(null);
                     }
                 }
-                if (p.getDireita() == null) {
-                    if (p == raiz) {
-                        raiz = p.getEsquerda();
+            }
+            if (p.getDireita() == null) {
+                if (p == raiz) {
+                    raiz = p.getEsquerda();
+                } else {
+                    if (filhoEsquerda == true) {
+                        pai.setEsquerda(p.getEsquerda());
                     } else {
-                        if (filhoEsquerda == true) {
-                            pai.setEsquerda(p.getEsquerda());
+                        pai.setDireita(p.getEsquerda());
+                    }
+                }
+            } else {
+                if (p.getEsquerda() == null) {
+                    if (p == raiz) {
+                        raiz = p.getDireita();
+                    } else {
+                        if (filhoEsquerda) {
+                            pai.setEsquerda(p.getDireita());
                         } else {
                             pai.setDireita(p.getDireita());
                         }
                     }
-                } else {
-                    if (p.getEsquerda() == null) {
-                        if (p == raiz) {
-                            raiz = p.getDireita();
+                } else { // Nó com dois filhos
+                    NoArvoreBinaria<T> sucessor = extrairSucessor(p);
+                    if (p == raiz) {
+                        raiz = sucessor;
+                    } else {
+                        if (filhoEsquerda) {
+                            pai.setEsquerda(sucessor);
                         } else {
-                            if (filhoEsquerda == true) {
-                                pai.setEsquerda(p.getDireita());
-                            } else {
-                                pai.setDireita(p.getDireita());
-                            }
+                            pai.setDireita(sucessor);
                         }
-                    } else { // Nó com dois filhos
-                        NoArvoreBinaria<T> sucessor = extrairSucessor(p);
-                        if (p == raiz) {
-                            raiz = sucessor;
-                        } else {
-                            if (filhoEsquerda == true) {
-                                pai.setEsquerda(sucessor);
-                            } else {
-                                pai.setDireita(sucessor);
-                            }
-                        }
-                        sucessor.setEsquerda(p.getEsquerda());
                     }
+                    sucessor.setEsquerda(p.getEsquerda());
                 }
             }
         }
