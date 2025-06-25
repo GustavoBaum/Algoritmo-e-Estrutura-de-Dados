@@ -2,8 +2,7 @@ public class OrdenacaoQuickSort<T extends Comparable<T>> extends OrdenacaoAbstra
 
     @Override
     public void ordenar(T[] info) {
-        int n = (info.length)-1;
-        quickSort(0, n);
+        quickSort(0, info.length-1);
     }
 
     private void quickSort(int inicio, int fim) {

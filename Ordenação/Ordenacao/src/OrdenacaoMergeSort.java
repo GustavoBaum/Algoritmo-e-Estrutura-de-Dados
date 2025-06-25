@@ -2,8 +2,7 @@ public class OrdenacaoMergeSort<T extends Comparable<T>> extends OrdenacaoAbstra
 
     @Override
     public void ordenar(T[] info) {
-        int n = (info.length)-1;
-        mergeSort(0, n);
+        mergeSort(0, info.length-1);
     }
 
     private void mergeSort(int inicio, int fim) {
