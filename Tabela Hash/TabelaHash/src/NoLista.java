@@ -1,8 +1,8 @@
 public class NoLista<T> {
-     
+
     private T info;
     private NoLista<T> proximo;
-    
+
     public T getInfo() {
         return (T) info;
     }
